@@ -1,12 +1,12 @@
 const items = [
-  "Sales pages",
-  "COD e-commerce",
-  "LMS platforms",
-  "Websites & CMS",
-  "Automations",
-  "Integrations",
-  "Platform builds",
-  "Conversion copy",
+  { th: "เพจขายของ", en: "Sales pages" },
+  { th: "ร้านค้า COD", en: "COD e-commerce" },
+  { th: "คอร์สออนไลน์", en: "LMS platforms" },
+  { th: "เว็บไซต์บริษัท", en: "Websites & CMS" },
+  { th: "ระบบอัตโนมัติ", en: "Automations" },
+  { th: "AI + ข้อมูล", en: "AI & data" },
+  { th: "แพลตฟอร์ม", en: "Platform builds" },
+  { th: "คัดลอกข้อความโฆษณา", en: "Conversion copy" },
 ];
 
 export default function Marquee() {
@@ -19,7 +19,7 @@ export default function Marquee() {
             key={i}
             className="font-mono text-sm uppercase tracking-wider text-paper/60 flex items-center gap-10"
           >
-            {item}
+            {item.th}
             <span className="text-lime">/</span>
           </span>
         ))}
