@@ -1,2 +1,2 @@
-:HL["/_next/static/chunks/3vgaz6judjksl.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"p-SkI-bq6nRUH2ii4SOOq"}
+:HL["/hw-team-website/_next/static/chunks/1tdfk26v12ll3.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"LcgC51elvf8_-TsJCdX6K"}
