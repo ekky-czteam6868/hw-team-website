@@ -1,23 +1,21 @@
-import type { Metadata } from "next";
+"use client";
+
 import SectionHeading from "@/components/SectionHeading";
 import QuoteForm from "@/components/QuoteForm";
 import TeamGrid from "@/components/TeamGrid";
-import { contactEmail, telegramHandle } from "@/lib/data";
-
-export const metadata: Metadata = {
-  title: "Contact | HW Team",
-  description:
-    "Get a quote from HW Team. Sales pages, COD e-commerce, LMS and automations. Replies within one business day.",
-};
+import { site } from "@/lib/data";
+import { useLang } from "@/lib/lang";
 
 export default function ContactPage() {
+  const { lang } = useLang();
+  const th = lang === "th";
   return (
     <>
       <section className="max-w-[1400px] mx-auto px-4 md:px-8 pt-36 md:pt-44 pb-16 md:pb-20">
         <SectionHeading
           index="Contact"
-          title="Tell us what you are building"
-          aside="A scope and a price within one business day. No obligation, no sales script."
+          title={th ? { th: "บอกเราว่าจะสร้างอะไร", en: "Tell us what you are building" } : { th: "บอกเราว่าจะสร้างอะไร", en: "Tell us what you are building" }}
+          aside={th ? { th: "สโคปและราคาภายใน 1 วันทำการ ไม่มีเงื่อนไข ไม่มีสคริปต์ขาย", en: "A scope and a price within one business day. No obligation, no sales script." } : { th: "สโคปและราคาภายใน 1 วันทำการ ไม่มีเงื่อนไข ไม่มีสคริปต์ขาย", en: "A scope and a price within one business day. No obligation, no sales script." }}
         />
       </section>
 
@@ -34,10 +32,10 @@ export default function ContactPage() {
                   Email
                 </p>
                 <a
-                  href={`mailto:${contactEmail}`}
+                  href={`mailto:${site.contactEmail}`}
                   className="text-paper hover:text-lime transition-colors break-all"
                 >
-                  {contactEmail}
+                  {site.contactEmail}
                 </a>
               </div>
               <div>
@@ -45,35 +43,35 @@ export default function ContactPage() {
                   Telegram
                 </p>
                 <a
-                  href={`https://t.me/${telegramHandle.replace("@", "")}`}
+                  href={`https://t.me/${site.telegram.replace("@", "")}`}
                   target="_blank"
                   rel="noreferrer"
                   className="text-paper hover:text-lime transition-colors"
                 >
-                  {telegramHandle}
+                  {site.telegram}
                 </a>
                 <p className="text-paper/50 text-sm mt-1">
-                  Fastest for a quick question.
+                  {th ? "เร็วที่สุดสำหรับคำถามสั้นๆ" : "Fastest for a quick question."}
                 </p>
               </div>
               <div>
                 <p className="font-mono text-[12px] uppercase tracking-wider text-mute mb-2">
-                  Location
+                  {th ? "ที่ตั้ง" : "Location"}
                 </p>
-                <p className="text-paper">Bangkok, Thailand</p>
+                <p className="text-paper">{th ? "กรุงเทพฯ ประเทศไทย" : "Bangkok, Thailand"}</p>
                 <p className="text-paper/50 text-sm mt-1">
-                  Working with clients across SEA.
+                  {th ? "ทำงานกับลูกค้าทั่วเอเชียตะวันออกเฉียงใต้" : "Working with clients across SEA."}
                 </p>
               </div>
               <div>
                 <p className="font-mono text-[12px] uppercase tracking-wider text-mute mb-2">
-                  Response time
+                  {th ? "เวลาตอบกลับ" : "Response time"}
                 </p>
                 <p className="text-paper">
-                  Within one business day
+                  {th ? "ภายใน 1 วันทำการ" : "Within one business day"}
                 </p>
                 <p className="text-paper/50 text-sm mt-1">
-                  Quotes scoped from the brief, not a sales call.
+                  {th ? "คิดราคาจากบรีฟ ไม่ใช่จากการโทรขาย" : "Quotes scoped from the brief, not a sales call."}
                 </p>
               </div>
             </div>
@@ -84,9 +82,9 @@ export default function ContactPage() {
       <section className="border-t hairline">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-20 md:py-28">
           <SectionHeading
-            index="Who you will talk to"
-            title="The people behind the builds"
-            aside="Everyone on this list has shipped the work on this site."
+            index="Team"
+            title={th ? { th: "คนที่คุณจะได้คุยด้วย", en: "Who you will talk to" } : { th: "คนที่คุณจะได้คุยด้วย", en: "Who you will talk to" }}
+            aside={th ? { th: "ทุกคนในหน้านี้ส่งมอบงานบนเว็บไซต์นี้จริง", en: "Everyone on this list has shipped the work on this site." } : { th: "ทุกคนในหน้านี้ส่งมอบงานบนเว็บไซต์นี้จริง", en: "Everyone on this list has shipped the work on this site." }}
           />
           <TeamGrid />
         </div>
