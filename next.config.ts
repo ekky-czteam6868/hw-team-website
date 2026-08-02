@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   // root that also contains other lockfiles. Pin tracing to this project so
   // the build does not try to trace the whole /opt/data tree.
   outputFileTracingRoot: __dirname,
+  // Static export for the GitHub Pages live preview. All routes are static
+  // (no server actions, no API routes), so the whole site ships as files.
+  output: "export",
+  images: { unoptimized: true },
+  trailingSlash: true,
 };
 
 export default nextConfig;
