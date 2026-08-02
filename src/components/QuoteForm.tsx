@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { PaperPlaneTilt, Check } from "@/components/Icons";
-import { contactEmail } from "@/lib/data";
+import { site } from "@/lib/data";
+import { useLang } from "@/lib/lang";
 
 export default function QuoteForm() {
+  const { lang } = useLang();
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -21,12 +23,12 @@ export default function QuoteForm() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(
-      `Project inquiry from ${form.name || "the website"}${form.company ? ` (${form.company})` : ""}`
+      `${lang === "th" ? "สอบถามโปรเจกต์จาก" : "Project inquiry from"} ${form.name || "website"}${form.company ? ` (${form.company})` : ""}`
     );
     const body = encodeURIComponent(
-      `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nBudget: ${form.budget}\n\n${form.message}`
+      `${lang === "th" ? "ชื่อ" : "Name"}: ${form.name}\n${lang === "th" ? "บริษัท" : "Company"}: ${form.company}\nEmail: ${form.email}\n${lang === "th" ? "งบประมาณ" : "Budget"}: ${form.budget}\n\n${form.message}`
     );
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${site.contactEmail}?subject=${subject}&body=${body}`;
     setSent(true);
   };
 
@@ -36,10 +38,13 @@ export default function QuoteForm() {
         <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lime text-ink mb-5">
           <Check size={22} />
         </span>
-        <h3 className="text-2xl tracking-tight mb-3">Your email client should be open</h3>
+        <h3 className="text-2xl tracking-tight mb-3">
+          {lang === "th" ? "เปิดอีเมลของคุณแล้ว" : "Your email client should be open"}
+        </h3>
         <p className="text-paper/60 text-sm leading-relaxed max-w-sm mx-auto">
-          Send the prefilled message and we will reply within one business day.
-          Prefer chat? Reach us on Telegram at @cznakinkul.
+          {lang === "th"
+            ? "ส่งข้อความที่เตรียมไว้แล้ว เราจะตอบกลับภายใน 1 วันทำการ หรือแชทเร็วกว่านั้นที่ Telegram @cznakinkul"
+            : "Send the prefilled message and we will reply within one business day. Prefer chat? Reach us on Telegram at @cznakinkul."}
         </p>
       </div>
     );
@@ -53,15 +58,15 @@ export default function QuoteForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label htmlFor="name" className="block font-mono text-[12px] uppercase tracking-wider text-mute mb-2">
-            Name
+            {lang === "th" ? "ชื่อ" : "Name"}
           </label>
-          <input id="name" required value={form.name} onChange={update("name")} className={inputCls} placeholder="Your name" />
+          <input id="name" required value={form.name} onChange={update("name")} className={inputCls} placeholder={lang === "th" ? "ชื่อของคุณ" : "Your name"} />
         </div>
         <div>
           <label htmlFor="company" className="block font-mono text-[12px] uppercase tracking-wider text-mute mb-2">
-            Company
+            {lang === "th" ? "บริษัท" : "Company"}
           </label>
-          <input id="company" value={form.company} onChange={update("company")} className={inputCls} placeholder="Optional" />
+          <input id="company" value={form.company} onChange={update("company")} className={inputCls} placeholder={lang === "th" ? "ไม่จำเป็น" : "Optional"} />
         </div>
         <div>
           <label htmlFor="email" className="block font-mono text-[12px] uppercase tracking-wider text-mute mb-2">
@@ -71,22 +76,22 @@ export default function QuoteForm() {
         </div>
         <div>
           <label htmlFor="budget" className="block font-mono text-[12px] uppercase tracking-wider text-mute mb-2">
-            Budget range
+            {lang === "th" ? "งบประมาณ" : "Budget range"}
           </label>
           <select id="budget" value={form.budget} onChange={update("budget")} className={inputCls}>
-            <option value="">Select a range</option>
-            <option>Under 50k THB</option>
-            <option>50k to 150k THB</option>
-            <option>150k to 500k THB</option>
-            <option>500k+ THB</option>
-            <option>Not sure yet</option>
+            <option value="">{lang === "th" ? "เลือกช่วงงบ" : "Select a range"}</option>
+            <option>ต่ำกว่า 50,000 บาท</option>
+            <option>50,000 - 150,000 บาท</option>
+            <option>150,000 - 500,000 บาท</option>
+            <option>500,000+ บาท</option>
+            <option>{lang === "th" ? "ยังไม่แน่ใจ" : "Not sure yet"}</option>
           </select>
         </div>
         <div className="md:col-span-2">
           <label htmlFor="message" className="block font-mono text-[12px] uppercase tracking-wider text-mute mb-2">
-            Project
+            {lang === "th" ? "โปรเจกต์" : "Project"}
           </label>
-          <textarea id="message" required rows={5} value={form.message} onChange={update("message")} className={inputCls} placeholder="What are you building, and what should it achieve?" />
+          <textarea id="message" required rows={5} value={form.message} onChange={update("message")} className={inputCls} placeholder={lang === "th" ? "เล่าให้ฟังว่าอยากสร้างอะไร และต้องการให้ได้ผลลัพธ์อะไร" : "What are you building, and what should it achieve?"} />
         </div>
       </div>
 
@@ -95,11 +100,11 @@ export default function QuoteForm() {
           type="submit"
           className="group inline-flex items-center gap-2 bg-lime text-ink px-6 py-3.5 font-mono text-sm uppercase tracking-wider hover:bg-paper transition-colors"
         >
-          Send inquiry
+          {lang === "th" ? "ส่งคำถาม" : "Send inquiry"}
           <PaperPlaneTilt size={16} className="group-hover:translate-x-0.5 transition-transform" />
         </button>
         <p className="font-mono text-[12px] text-mute">
-          Opens your email client. No spam, ever.
+          {lang === "th" ? "เปิดอีเมลของคุณ ไม่มีสแปมแน่นอน" : "Opens your email client. No spam, ever."}
         </p>
       </div>
     </form>
